@@ -6,7 +6,6 @@ import {
   Layers, Sparkles, User, X, CheckCircle2 
 } from 'lucide-react';
 
-// TypeScript Interface - Vercel build error fix panna idhu mukkiyam
 interface Project {
   title: string;
   shortDesc: string;
@@ -46,6 +45,17 @@ const projects: Project[] = [
 export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
+  const skills = [
+    { name: "Python", category: "Core" },
+    { name: "Java", category: "Core" },
+    { name: "ReactJS", category: "Web" },
+    { name: "Next.js", category: "Web" },
+    { name: "Django", category: "Backend" },
+    { name: "Flask", category: "Backend" },
+    { name: "Tailwind CSS", category: "Design" },
+    { name: "REST APIs", category: "Dev" }
+  ];
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-emerald-500/30 overflow-x-hidden">
       
@@ -71,8 +81,9 @@ export default function Portfolio() {
 
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
         
-        {/* Left Side: About & Education */}
-        <div className="md:col-span-1 space-y-10">
+        {/* Left Side: About, Education, & Skills */}
+        <div className="md:col-span-1 space-y-8">
+          {/* About Me */}
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="bg-slate-900/40 p-8 rounded-3xl border border-slate-800 backdrop-blur-xl">
             <div className="flex items-center gap-4 mb-6"><User className="text-purple-400" /> <h2 className="text-xl font-bold">About Me</h2></div>
             <p className="text-slate-400 text-sm leading-relaxed mb-4">
@@ -84,13 +95,26 @@ export default function Portfolio() {
             </ul>
           </motion.div>
 
+          {/* Education */}
           <motion.div whileHover={{ y: -5 }} className="bg-slate-900/40 p-8 rounded-3xl border border-slate-800">
             <div className="flex items-center gap-4 mb-6"><GraduationCap className="text-blue-400" /> <h2 className="text-xl font-bold">Education</h2></div>
             <p className="text-blue-300 font-bold leading-tight text-sm">Vel Tech High Tech Engineering College</p>
             <p className="text-slate-500 text-[10px] mt-1 italic">B.Tech Information Technology (2024 Graduate)</p>
             <div className="mt-6 flex items-baseline gap-2">
-              <span className="text-3xl font-black text-white">8.27</span>
-              <span className="text-slate-500 text-[10px] uppercase tracking-tighter">Aggregate CGPA</span>
+              <span className="text-3xl font-black text-white">8.29</span>
+              <span className="text-slate-500 text-[10px] uppercase tracking-tighter text-blue-400">CGPA</span>
+            </div>
+          </motion.div>
+
+          {/* Skills Card - UPDATED SECTION */}
+          <motion.div whileHover={{ y: -5 }} className="bg-slate-900/40 p-8 rounded-3xl border border-slate-800 border-l-emerald-500/30">
+            <div className="flex items-center gap-4 mb-6"><Cpu className="text-emerald-400" /> <h2 className="text-xl font-bold">Tech Stack</h2></div>
+            <div className="flex flex-wrap gap-2">
+              {skills.map((skill) => (
+                <span key={skill.name} className="px-3 py-1.5 bg-slate-800/50 rounded-xl text-[10px] font-medium border border-slate-700 hover:bg-slate-700 transition-colors cursor-default">
+                  {skill.name}
+                </span>
+              ))}
             </div>
           </motion.div>
         </div>
